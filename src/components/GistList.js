@@ -1,3 +1,4 @@
+import Octicon from 'react-octicon';
 import styled from "styled-components";
 import React, {useEffect, useState} from 'react'
 
@@ -42,8 +43,12 @@ function GistList(props) {
 
     return (
         <Wrapper>
-            {isLoading && <div>Is Loading...</div>}
-            {!!gists.length && (
+            {isLoading && (
+                <LoadingGists>
+                    <Octicon name="sync" mega spin/>
+                </LoadingGists>
+            )}
+            {!isLoading && !!gists.length && (
                 <GistListWrapper>
                     {gists.map((gist) => (
                         <GistListItemWrapper key={gist.id}>
@@ -77,6 +82,18 @@ const GistListWrapper = styled.ul`
 const GistListItemWrapper = styled.li`
   padding: 36px 0;
   border-bottom: 1px solid #ccc;
+`;
+
+const LoadingGists = styled.div`
+  display: flex;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+
+  .mega-octicon {
+    width: 25px;
+    height: 33px;
+  }
 `;
 
 export default GistList
