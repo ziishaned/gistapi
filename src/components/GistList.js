@@ -1,6 +1,7 @@
 import Octicon from 'react-octicon';
 import styled from "styled-components";
-import React, {useEffect, useState} from 'react'
+import debounce from 'lodash.debounce';
+import React, {useCallback, useEffect, useState} from 'react'
 
 import Gist from './Gist';
 import {getGistForUser, getPublicGists} from "../services/gistService";
@@ -11,10 +12,22 @@ function GistList(props) {
     const [gists, setGists] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const debounceGetGistsForUsername = useCallback(
+        debounce((value) => {
+            setIsLoading(true);
+            getGistForUser(value).then((res) => {
+                setGists(res.data);
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+                setIsLoading(false);
+            })
+        }, 1000),
+        []
+    );
+
     useEffect(() => {
-        if (username.length) {
-            return
-        }
+        if (username.length) return;
 
         setIsLoading(true);
         getPublicGists().then((res) => {
@@ -24,21 +37,12 @@ function GistList(props) {
         }).finally(() => {
             setIsLoading(false);
         })
-    }, []);
+    }, [username]);
 
     useEffect(() => {
-        if (!username.length) {
-            return;
-        }
+        if (!username.length) return;
 
-        setIsLoading(true);
-        getGistForUser(username).then((res) => {
-            setGists(res.data);
-        }).catch((error) => {
-            console.log(error);
-        }).finally(() => {
-            setIsLoading(false);
-        })
+        debounceGetGistsForUsername(username);
     }, [username]);
 
     return (
