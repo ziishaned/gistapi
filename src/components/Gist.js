@@ -9,13 +9,13 @@ function Gist(props) {
         <Wrapper>
             <GistMeta>
                 <div className="meta-header">
-                    <a href="#" className="owner-info">
+                    <a href={`https://gist.github.com/${gist.owner.login}`} className="owner-info">
                         <img src={gist.owner.avatar_url} alt="avatar" className='avatar'/>
                         <div>{gist.owner.login}</div>
                     </a>
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href={gist.url}>
                                 <Octicon name="code" mega/>
                                 {Object.keys(gist.files).length} Files
                             </a>
@@ -33,7 +33,7 @@ function Gist(props) {
                             </a>
                         </li>
                         <li>
-                            <a href={gist.comments_url}>
+                            <a href={`https://gist.github.com/${gist.owner.login}/${gist.id}/stargazers`}>
                                 <Octicon name="star" mega/>
                                 Stars
                             </a>
@@ -56,7 +56,7 @@ function Gist(props) {
             <ul>
                 {Object.entries(gist.files).map(([fileName, file], index) => (
                     <li key={index}>
-                        <a href="#">
+                        <a href={file.raw_url}>
                             <Octicon name="file" mega/>
                             {fileName}
                         </a>
