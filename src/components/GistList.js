@@ -1,7 +1,7 @@
 import Octicon from 'react-octicon';
 import styled from "styled-components";
 import debounce from 'lodash.debounce';
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 
 import Gist from './Gist';
 import {getGistForUser, getPublicGists} from "../services/gistService";
@@ -12,8 +12,8 @@ function GistList(props) {
     const [gists, setGists] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const debounceGetGistsForUsername = useCallback(
-        debounce((value) => {
+    const debounceGetGistsForUsername = useMemo(
+        () => debounce((value) => {
             setIsLoading(true);
             getGistForUser(value).then((res) => {
                 setGists(res.data);
@@ -43,7 +43,7 @@ function GistList(props) {
         if (!username.length) return;
 
         debounceGetGistsForUsername(username);
-    }, [username]);
+    }, [username, debounceGetGistsForUsername]);
 
     return (
         <Wrapper>
