@@ -1,70 +1,66 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Octicon from 'react-octicon';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 function Gist(props) {
-    const {gist} = props;
+  const {gist} = props;
 
-    return (
-        <Wrapper>
-            <GistMeta>
-                <div className="meta-header">
-                    <a href={`https://gist.github.com/${gist.owner.login}`} className="owner-info">
-                        <img src={gist.owner.avatar_url} alt="avatar" className='avatar'/>
-                        <div>{gist.owner.login}</div>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href={gist.url}>
-                                <Octicon name="code" mega/>
-                                {Object.keys(gist.files).length} Files
-                            </a>
-                        </li>
-                        <li>
-                            <a href={gist.forks_url}>
-                                <Octicon name="repo-forked" mega/>
-                                Forks
-                            </a>
-                        </li>
-                        <li>
-                            <a href={gist.comments_url}>
-                                <Octicon name="comment" mega/>
-                                Comments
-                            </a>
-                        </li>
-                        <li>
-                            <a href={`https://gist.github.com/${gist.owner.login}/${gist.id}/stargazers`}>
-                                <Octicon name="star" mega/>
-                                Stars
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+  return (
+    <Wrapper>
+      <GistMeta>
+        <div className="meta-header">
+          <a href={`https://gist.github.com/${gist.owner.login}`} className="owner-info">
+            <img src={gist.owner.avatar_url} alt="avatar" className="avatar" />
+            <div>{gist.owner.login}</div>
+          </a>
+          <ul>
+            <li>
+              <a href={gist.url}>
+                <Octicon name="code" mega />
+                {Object.keys(gist.files).length} Files
+              </a>
+            </li>
+            <li>
+              <a href={gist.forks_url}>
+                <Octicon name="repo-forked" mega />
+                Forks
+              </a>
+            </li>
+            <li>
+              <a href={gist.comments_url}>
+                <Octicon name="comment" mega />
+                Comments
+              </a>
+            </li>
+            <li>
+              <a href={`https://gist.github.com/${gist.owner.login}/${gist.id}/stargazers`}>
+                <Octicon name="star" mega />
+                Stars
+              </a>
+            </li>
+          </ul>
+        </div>
 
-                <ul>
-                    <li>
-                        Created at: {gist.created_at}
-                    </li>
-                    <li>
-                        Last updated: {gist.updated_at}
-                    </li>
-                </ul>
-            </GistMeta>
+        <ul>
+          <li>Created at: {gist.created_at}</li>
+          <li>Last updated: {gist.updated_at}</li>
+        </ul>
+      </GistMeta>
 
-            <p className='description'>{gist.description}</p>
+      <p className="description">{gist.description}</p>
 
-            <ul>
-                {Object.entries(gist.files).map(([fileName, file], index) => (
-                    <li key={index}>
-                        <a href={file.raw_url}>
-                            <Octicon name="file" mega/>
-                            {fileName}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </Wrapper>
-    );
+      <ul>
+        {Object.entries(gist.files).map(([fileName, file], index) => (
+          <li key={index}>
+            <a href={file.raw_url}>
+              <Octicon name="file" mega />
+              {fileName}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div`
@@ -128,7 +124,7 @@ const GistMeta = styled.div`
 `;
 
 Gist.propTypes = {
-    gist: PropTypes.object
+  gist: PropTypes.object,
 };
 
 export default Gist;

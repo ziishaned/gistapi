@@ -1,19 +1,19 @@
-import React from 'react'
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import Octicon from 'react-octicon';
 import styled from 'styled-components';
 
 import Search from './Search';
 
 function Header(props) {
-    const {onChangeUsername} = props;
+  const {onChangeUsername} = props;
 
-    return (
-        <Wrapper>
-            <Octicon name="mark-github" mega/>
-            <Search onChangeUsername={onChangeUsername}/>
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <Octicon name="mark-github" mega />
+      <Search onChangeUsername={onChangeUsername} />
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div`
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
 `;
 
 Header.propTypes = {
-    onChangeUsername: PropTypes.func.isRequired
+  onChangeUsername: PropTypes.func.isRequired,
 };
 
 export default Header;

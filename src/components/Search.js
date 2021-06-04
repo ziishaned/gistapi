@@ -1,23 +1,20 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Octicon from 'react-octicon';
 import styled from 'styled-components';
 
 const Search = (props) => {
-    const {onChangeUsername} = props;
+  const {onChangeUsername} = props;
 
-    return (
-        <Wrapper>
-            <InputBox>
-                <Octicon name="search"/>
-                <Input
-                    placeholder="Search Gists for the username"
-                    onChange={(event) => onChangeUsername(event.target.value)}
-                />
-            </InputBox>
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper>
+      <InputBox>
+        <Octicon name="search" />
+        <Input placeholder="Search Gists for the username" onChange={(event) => onChangeUsername(event.target.value)} />
+      </InputBox>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   padding: 8px;
@@ -45,7 +42,7 @@ const Input = styled.input`
 `;
 
 Search.propTypes = {
-    onChangeUsername: PropTypes.func.isRequired
+  onChangeUsername: PropTypes.func.isRequired,
 };
 
-export default Search
+export default Search;
