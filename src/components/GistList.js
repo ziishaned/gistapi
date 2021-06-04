@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Octicon from 'react-octicon';
 import styled from "styled-components";
 import debounce from 'lodash.debounce';
@@ -99,5 +100,9 @@ const LoadingGists = styled.div`
     height: 33px;
   }
 `;
+
+GistList.propTypes = {
+    username: PropTypes.string
+};
 
 export default GistList

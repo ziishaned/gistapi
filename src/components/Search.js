@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import Octicon from 'react-octicon';
 import styled from 'styled-components';
 
@@ -42,5 +43,9 @@ const Input = styled.input`
     outline: 0;
   }
 `;
+
+Search.propTypes = {
+    onChangeUsername: PropTypes.func.isRequired
+};
 
 export default Search

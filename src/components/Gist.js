@@ -1,6 +1,6 @@
+import PropTypes from "prop-types";
 import Octicon from 'react-octicon';
 import styled from "styled-components";
-
 
 function Gist(props) {
     const {gist} = props;
@@ -126,5 +126,9 @@ const GistMeta = styled.div`
     }
   }
 `;
+
+Gist.propTypes = {
+    gist: PropTypes.object
+};
 
 export default Gist;

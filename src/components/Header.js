@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from "prop-types";
 import Octicon from 'react-octicon';
 import styled from 'styled-components';
 
@@ -25,5 +26,9 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
 `;
+
+Header.propTypes = {
+    onChangeUsername: PropTypes.func.isRequired
+};
 
 export default Header;
