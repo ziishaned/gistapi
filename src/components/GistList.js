@@ -2,13 +2,19 @@ import styled from "styled-components";
 import React, {useEffect, useState} from 'react'
 
 import Gist from './Gist';
-import {getPublicGists} from "../services/gistService";
+import {getGistForUser, getPublicGists} from "../services/gistService";
 
-function GistList() {
+function GistList(props) {
+    const {username = ''} = props;
+
     const [gists, setGists] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        if (username.length) {
+            return
+        }
+
         setIsLoading(true);
         getPublicGists().then((res) => {
             setGists(res.data);
@@ -18,6 +24,21 @@ function GistList() {
             setIsLoading(false);
         })
     }, []);
+
+    useEffect(() => {
+        if (!username.length) {
+            return;
+        }
+
+        setIsLoading(true);
+        getGistForUser(username).then((res) => {
+            setGists(res.data);
+        }).catch((error) => {
+            console.log(error);
+        }).finally(() => {
+            setIsLoading(false);
+        })
+    }, [username]);
 
     return (
         <Wrapper>

@@ -1,9 +1,9 @@
+import React from 'react';
 import Octicon from 'react-octicon';
-import React, {useState} from 'react';
 import styled from 'styled-components';
 
-const Search = () => {
-    const [username, setUsername] = useState('');
+const Search = (props) => {
+    const {onChangeUsername} = props;
 
     return (
         <Wrapper>
@@ -11,7 +11,7 @@ const Search = () => {
                 <Octicon name="search"/>
                 <Input
                     placeholder="Search Gists for the username"
-                    onChange={(event) => setUsername(event.target.value)}
+                    onChange={(event) => onChangeUsername(event.target.value)}
                 />
             </InputBox>
         </Wrapper>

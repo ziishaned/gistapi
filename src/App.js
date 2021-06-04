@@ -1,3 +1,4 @@
+import {useState} from "react";
 import styled from 'styled-components'
 
 import Header from "./components/Header";
@@ -5,11 +6,17 @@ import GlobalStyles from "./GlobalStyle";
 import GistList from "./components/GistList";
 
 const App = () => {
+    const [username, setUsername] = useState('');
+
+    const onChangeUsername = (value) => {
+        setUsername(value);
+    };
+
     return (
         <Wrapper className="App" data-testid="app">
-            <Header/>
+            <Header onChangeUsername={onChangeUsername}/>
             <GlobalStyles/>
-            <GistList/>
+            <GistList username={username}/>
         </Wrapper>
     );
 }

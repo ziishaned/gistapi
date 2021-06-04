@@ -4,11 +4,13 @@ import styled from 'styled-components';
 
 import Search from './Search';
 
-function Header() {
+function Header(props) {
+    const {onChangeUsername} = props;
+
     return (
         <Wrapper>
             <Octicon name="mark-github" mega/>
-            <Search/>
+            <Search onChangeUsername={onChangeUsername}/>
         </Wrapper>
     )
 }
