@@ -1,15 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
-import Octicon from 'react-octicon'
+import Octicon from 'react-octicon';
+import styled from 'styled-components';
+
 import Search from './Search';
 
 function Header() {
-  return (
-    <Wrapper>
-      <Octicon name="mark-github" mega/>
-      <Search />
-    </Wrapper>
-  )
+    return (
+        <Wrapper>
+            <Octicon name="mark-github" mega/>
+            <Search/>
+        </Wrapper>
+    )
 }
 
 const Wrapper = styled.div`
@@ -23,4 +24,4 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-export default Header
+export default Header;

@@ -1,16 +1,21 @@
-import React from 'react'
-import styled from 'styled-components'
-import Octicon from 'react-octicon'
+import Octicon from 'react-octicon';
+import React, {useState} from 'react';
+import styled from 'styled-components';
 
 const Search = () => {
-  return (
-    <Wrapper>
-      <InputBox>
-      <Octicon name="search" />
-      <Input placeholder="Search Gists for the username"/>
-      </InputBox>
-    </Wrapper>
-  )
+    const [username, setUsername] = useState('');
+
+    return (
+        <Wrapper>
+            <InputBox>
+                <Octicon name="search"/>
+                <Input
+                    placeholder="Search Gists for the username"
+                    onChange={(event) => setUsername(event.target.value)}
+                />
+            </InputBox>
+        </Wrapper>
+    )
 }
 
 const Wrapper = styled.div`
@@ -33,7 +38,7 @@ const Input = styled.input`
   width: 100%;
   font-size: 16px;
 
-  &:focus{
+  &:focus {
     outline: 0;
   }
 `;
